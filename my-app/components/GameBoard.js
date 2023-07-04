@@ -4,7 +4,7 @@ import Square from './Square';
 
 const GameBoard = () => {
 
-  const [timeLeft, setTimeLeft] = useState(60)
+  const [timeLeft, setTimeLeft] = useState(11)
 
   useEffect(() => {
     if(!timeLeft) return 
