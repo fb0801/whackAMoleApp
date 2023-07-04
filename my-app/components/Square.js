@@ -1,19 +1,26 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React,  {useEffect, useState} from 'react';
 
-const Square = ({time}) => {
+const Square = () => {
 
     const [moleActive, setMoleActive] = useState(false)
+    const [isGameOver, setGameOver] = useState(false)
 
     const randomTime = Math.random() * 20000
+    let timerId
 
     useEffect(() => {
-        const timerId = setInterval(() => {
+         timerId = setInterval(() => {
             setMoleActive(true)
             setTimeout(() => {setMoleActive(false)}, 800)
         }, randomTime)
-        setTimeout(endGame, time * 1000)
+        setTimeout(endGame, 60 * 1000)
     }, [])
+
+    function endGame(){
+    clearInterval(timerId)
+    setGameOver(true)
+    }
 
     return (
         <View style={moleActive? styles.mole : styles.square}></View>
