@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React,  {useEffect, useState} from 'react';
 
-const Square = () => {
+const Square = ({time}) => {
 
     const [moleActive, setMoleActive] = useState(false)
 
@@ -12,7 +12,8 @@ const Square = () => {
             setMoleActive(true)
             setTimeout(() => {setMoleActive(false)}, 800)
         }, randomTime)
-    },[])
+        setTimeout(endGame, time * 1000)
+    }, [])
 
     return (
         <View style={moleActive? styles.mole : styles.square}></View>

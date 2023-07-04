@@ -3,8 +3,8 @@ import React,  {useEffect, useState} from 'react';
 import Square from './Square';
 
 const GameBoard = () => {
-
-  const [timeLeft, setTimeLeft] = useState(11)
+  let time = 60
+  const [timeLeft, setTimeLeft] = useState(time)
 
   useEffect(() => {
     if(!timeLeft) return 
@@ -21,18 +21,18 @@ const GameBoard = () => {
       <Text>Farhan Whack a Mole</Text>
       <Text>{timeLeft}</Text>
       <View stylele={styles.game}>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
-        <Square></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
+        <Square time={time}></Square>
       </View>
     </View>
     )
