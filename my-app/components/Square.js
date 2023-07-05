@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React,  {useEffect, useState} from 'react';
+import { ADD_SCORE } from '../redux/actionTypes';
+import { Connect } from 'react-redux';
 
-const Square = () => {
+const Square = (props) => {
 
     const [moleActive, setMoleActive] = useState(false)
     const [isGameOver, setGameOver] = useState(false)
@@ -14,7 +16,7 @@ const Square = () => {
             setMoleActive(true)
             setTimeout(() => {setMoleActive(false)}, 800)
         }, randomTime)
-        setTimeout(endGame, 60 * 1000)
+        setTimeout(endGame, 10 * 1000)
     }, [])
 
     function endGame(){
@@ -23,7 +25,11 @@ const Square = () => {
     }
 
     return (
-        <View style={moleActive? styles.mole : styles.square}></View>
+        <TouchableOpacity onPress={moleActive? props.addScore: null}>
+        <View style={moleActive? styles.mole : styles.square}>
+            {isGameOver && <Text>X</Text>}
+        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -43,6 +49,17 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue'
     }
 }) 
+    const mapStateToProps = state => {
+        return {
+            score: state.score
+        }
+}
 
-export default Square
+const mapDispatchToProps = dispatch => {
+    return {
+        addScore: () => dispatch(addScore())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Square)
 
